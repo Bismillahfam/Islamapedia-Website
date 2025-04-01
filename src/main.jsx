@@ -7,6 +7,6 @@ import MenuList from "./MenuList.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Title />
-    <MenuList Items={["Quran", "Hello", "Hi"]} />
+    <MenuList Items={["Add a Note", "Search Vault", "Buy me a Coffee"]} />
   </StrictMode>
 );
