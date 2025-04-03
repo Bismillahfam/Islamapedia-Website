@@ -10,7 +10,6 @@ createRoot(document.getElementById("root")).render(
     <div className="min-h-screen bg-gradient-to-br from-[#EAD7A2] to-[#C2A878] text-[#4A3B27] flex justify-center items-center">
       <Title />
       <MenuList Items={["Add a Note", "Search Vault", "Buy me a Coffee"]} />
-      <GraphAnimation />
     </div>
   </StrictMode>
 );
