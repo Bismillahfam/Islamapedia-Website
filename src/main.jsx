@@ -3,9 +3,11 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import Title from "./Title.jsx";
 import MenuList from "./MenuList.jsx";
+import AuthenfticationBtn from "./AuthenticationBtn.jsx";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,10 +27,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const auth = getAuth(app);
+export default { auth };
+
 console.log(app);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <AuthenfticationBtn />
     <div className="min-h-screen bg-gradient-to-br from-[#EAD7A2] to-[#C2A878] text-[#4A3B27] flex justify-center items-center">
       <Title />
       <MenuList Items={["Add a Note", "Search Vault", "Buy me a Coffee"]} />
