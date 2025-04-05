@@ -7,7 +7,7 @@ function MenuList(props) {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div className="bg-secondary text-white w-64 rounded-r-lg shadow-md p-4 fixed top-[335px] left-0">
+    <div className="bg-secondary text-black w-64 rounded-r-lg shadow-lg p-4 fixed top-[335px] left-0">
       <ul className="text-lg font-semibold space-y-2">
         <li className="p-2 rounded-md hover:bg-[#6F6344] transition-all duration-300 transform hover:translate-x-3">
           {items[0]}

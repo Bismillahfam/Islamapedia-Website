@@ -34,6 +34,8 @@ console.log(app);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BackgroundVid />
+    <div className="bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-200 min-h-screen">
+      <BackgroundVid />
+    </div>
   </StrictMode>
 );
