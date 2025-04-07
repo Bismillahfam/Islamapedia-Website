@@ -4,6 +4,7 @@ import "./index.css";
 import Title from "./Title.jsx";
 import MenuList from "./MenuList.jsx";
 import BackgroundVid from "./BackgroundVid.jsx";
+import AuthenticationBtn from "./AuthenticationBtn.jsx";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -28,15 +29,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-export default { auth };
-
-console.log(app);
+export { auth };
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <div className="relative bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-200 min-h-screen">
       <Title />
       <MenuList Items={["Add a Note", "Search Vault", "Donate"]} />
+      <AuthenticationBtn auth={auth} />
       <BackgroundVid />
     </div>
   </StrictMode>
