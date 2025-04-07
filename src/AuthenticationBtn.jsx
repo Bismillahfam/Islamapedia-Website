@@ -5,9 +5,10 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "./main.jsx"; // Update this if needed
+import { auth } from "./main.jsx";
 
 const provider = new GoogleAuthProvider();
+let webUser = null;
 
 function AuthenticationBtn() {
   const [user, setUser] = useState(null);
@@ -23,6 +24,7 @@ function AuthenticationBtn() {
   const login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        webUser = result.user;
         console.log("Logged in as:", result.user.displayName);
         console.log("User pfp: ", result.user.photoURL);
       })
@@ -75,3 +77,4 @@ function AuthenticationBtn() {
 }
 
 export default AuthenticationBtn;
+export { webUser };
