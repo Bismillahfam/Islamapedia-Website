@@ -37,6 +37,7 @@ function AuthenticationBtn() {
     signOut(auth)
       .then(() => {
         console.log("User signed out");
+        webUser = null;
       })
       .catch((error) => {
         console.error("Logout error:", error);

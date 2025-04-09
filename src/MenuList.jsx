@@ -4,41 +4,20 @@ import { auth } from "./main.jsx";
 import { webUser } from "./AuthenticationBtn.jsx";
 console.log("User: ", webUser);
 
-// Imports for Authentication
-import { useEffect } from "react";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
-const provider = new GoogleAuthProvider();
+function AddNote() {
+  console.log("Add Note clicked");
+  if (webUser == null) {
+    alert("Please sign in to add a note.");
+  } else {
+    console.log("Add Note Successful");
+  }
+}
 
 function MenuList(props) {
   const items = props.Items;
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState(null);
-
-  function login() {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        webUser = result.user;
-        console.log("Logged in as:", result.user.displayName);
-        console.log("User pfp: ", result.user.photoURL);
-      })
-      .catch((error) => {
-        console.error("Login error:", error);
-      });
-  }
-
-  function AddNote() {
-    console.log("Add Note clicked");
-    if (webUser == null) {
-      alert("Please sign in to add a note.");
-      login();
-    }
-  }
 
   return (
     <div className="bg-secondary text-black w-64 rounded-r-lg shadow-lg p-4 fixed top-[335px] left-0">
