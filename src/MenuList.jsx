@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import "./index.css";
 import { auth } from "./main.jsx";
-import { webUser } from "./AuthenticationBtn.jsx";
-console.log("User: ", webUser);
-
-function AddNote() {
-  console.log("Add Note clicked");
-  if (webUser == null) {
-    alert("Please sign in to add a note.");
-  } else {
-    console.log("Add Note Successful");
-  }
-}
+import { addNote } from "./NoteFunctions.js";
+import Title from "./Title.jsx";
 
 function MenuList(props) {
   const items = props.Items;
@@ -23,11 +14,18 @@ function MenuList(props) {
     <div className="bg-secondary text-black w-64 rounded-r-lg shadow-lg p-4 fixed top-[335px] left-0">
       <ul className="text-lg font-semibold space-y-2">
         <li
-          onClick={AddNote}
+          onClick={() =>
+            addNote({
+              Title: "Title",
+              Body: "Testing firestore and stuff.",
+              References: [],
+            })
+          }
           className="p-2 rounded-md hover:bg-[#6F6344] transition-all duration-300 transform hover:translate-x-3"
         >
           {items[0]}
         </li>
+
         <li
           className="p-2 rounded-md hover:bg-[#6F6344] transition-all duration-300 transform hover:translate-x-3 cursor-pointer"
           onClick={() => setIsSearchActive(true)}
@@ -45,9 +43,11 @@ function MenuList(props) {
             items[1]
           )}
         </li>
-        <li className="p-2 rounded-md hover:bg-[#6F6344] transition-all duration-300 transform hover:translate-x-3">
-          {items[2]}
-        </li>
+        <a href="https://buy.stripe.com/6oE15pgZy1eLfLObII">
+          <li className="p-2 rounded-md hover:bg-[#6F6344] transition-all duration-300 transform hover:translate-x-3">
+            {items[2]}
+          </li>
+        </a>
       </ul>
     </div>
   );
