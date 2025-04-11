@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./index.css";
 import { auth } from "./main.jsx";
 import { addNote } from "./NoteFunctions.js";
-import Title from "./Title.jsx";
 
 function MenuList(props) {
   const items = props.Items;
@@ -17,6 +16,8 @@ function MenuList(props) {
           onClick={() =>
             addNote({
               Title: "Title",
+              Author: auth.currentUser.email,
+              CreatedAt: new Date(),
               Body: "Testing firestore and stuff.",
               References: [],
             })
