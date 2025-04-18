@@ -27,6 +27,7 @@ export { GlobalContext };
 // Create the provider component
 export function GlobalProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState("");
 
   // Firebase should only initialize once
   const app = useRef(initializeApp(firebaseConfig));
@@ -39,6 +40,8 @@ export function GlobalProvider({ children }) {
       value={{
         user,
         setUser,
+        userName,
+        setUserName,
         auth: auth.current,
         db: db.current,
         analytics: analytics.current,

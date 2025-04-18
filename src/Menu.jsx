@@ -2,22 +2,31 @@
 import { GlobalContext } from "./GlobalContext";
 import { useContext } from "react";
 
+// Menu component
 export default function Menu({ items }) {
-  // Use the context
   const { user, setUser } = useContext(GlobalContext);
 
   // Return a list of 3 buttons from the items prop
   return (
-    <div className="w-96 h-auto bg-primary rounded-br-lg shadow-lg flex flex-col items-center justify-center">
-      <button className="bg-secondary text-black font-bold py-2 rounded-lg mb-4 w-[90%] hover:scale-105 transition-transform duration-300">
+    // Add Note button adds a note to the database
+    <div className="w-96 bg-primary rounded-br-lg shadow-lg p-6 flex flex-col items-center gap-4">
+      <button className="bg-secondary text-black font-bold py-2 px-4 rounded-lg w-full hover:scale-105 transition-transform duration-300">
         {items[0]}
       </button>
-      <button className="bg-secondary text-black font-bold py-2 rounded-lg mb-4 w-[90%] hover:scale-105 transition-transform duration-300">
+      <button className="bg-secondary text-black font-bold py-2 px-4 rounded-lg w-full hover:scale-105 transition-transform duration-300">
         {items[1]}
       </button>
-      <button className="bg-secondary text-black font-bold py-2 rounded-lg mb-4 w-[90%] hover:scale-105 transition-transform duration-300">
-        {items[2]}
-      </button>
+
+      <a
+        href="https://buy.stripe.com/6oE15pgZy1eLfLObII"
+        className="w-full"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button className="bg-secondary text-black font-bold py-2 px-4 rounded-lg w-full hover:scale-105 transition-transform duration-300">
+          {items[2]}
+        </button>
+      </a>
     </div>
   );
 }

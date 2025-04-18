@@ -1,5 +1,4 @@
-import "./index.css";
-
+// Title Component
 function Title() {
   return (
     <div className="w-[52rem] h-1/3 bg-primary text-white dark:bg-primary dark:text-black p-10 rounded-br-3xl shadow-xl text-center flex flex-col justify-center">

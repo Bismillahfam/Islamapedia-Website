@@ -1,51 +1,110 @@
 // React imports
 import { useContext } from "react";
 import { GlobalContext } from "./GlobalContext";
+import { useState } from "react";
 
 // firebase imports
 import { getDoc, setDoc, doc } from "firebase/firestore";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
+function FirstLoginModal({ onSubmit }) {
+  const [input, setInput] = useState("");
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-primary rounded-lg p-6 w-96 shadow-lg text-center">
+        <h2 className="text-xl font-semibold mb-4">
+          What would you like to be known as?
+        </h2>
+        <input
+          type="text"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4"
+          placeholder="Enter your name"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button
+          onClick={() => onSubmit(input)}
+          className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary-dark"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// AuthButton component
 export default function AuthButton() {
-  const { user, setUser, auth, db } = useContext(GlobalContext);
+  const { user, setUser, userName, setUserName, auth, db } =
+    useContext(GlobalContext);
+
+  const [showModal, setShowModal] = useState(false);
+  const [tempUser, setTempUser] = useState(null); // for holding the new user before name input
 
   async function login() {
-    // Authorises the user with Google
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
     const signedInUser = result.user;
-    setUser(signedInUser);
-    console.log("User logged in:", signedInUser);
 
-    // Sets the userdata for firestore
     const userRef = doc(db, "users", signedInUser.uid);
     const docSnap = await getDoc(userRef);
 
-    // Check if user already exists
     if (!docSnap.exists()) {
-      await setDoc(userRef, {
-        name: signedInUser.displayName,
-        email: signedInUser.email,
-        photoURL: signedInUser.photoURL,
-      });
-      console.log("User data saved to Firestore");
+      setTempUser(signedInUser); // temporarily store user
+      setShowModal(true); // show modal for name input
     } else {
+      setUser(signedInUser);
+      setUserName(docSnap.data().name);
       console.log("User already exists in Firestore");
     }
   }
 
-  // Logs the user out and sets to null
+  async function handleNameSubmit(name) {
+    if (!tempUser) return;
+
+    const userRef = doc(db, "users", tempUser.uid);
+    await setDoc(userRef, {
+      name: tempUser.displayName,
+      email: tempUser.email,
+      photoURL: tempUser.photoURL,
+      username: name,
+    });
+
+    setUser(tempUser);
+    setUserName(name);
+    setTempUser(null);
+    setShowModal(false);
+  }
+
   async function logout() {
     await signOut(auth);
     setUser(null);
+    setUserName("");
   }
 
   return (
-    <button
-      onClick={user ? logout : login}
-      className="bg-primary text-black font-bold py-2 px-2 rounded-br-lg mb-4 w-auto transition-transform duration-300 hover:scale-x-105"
-    >
-      {user ? "Logout" : "Login with Google"}
-    </button>
+    <div className="fixed top-4 right-4 flex items-center gap-3 z-40">
+      {user && (
+        <img
+          src={
+            user.photoURL ||
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(
+              user.displayName || "User"
+            )}&background=random`
+          }
+          alt="User Profile"
+          className="w-10 h-10 rounded-full border border-gray-300 shadow"
+        />
+      )}
+      <button
+        onClick={user ? logout : login}
+        className="bg-primary text-black font-bold py-2 px-4 rounded-lg transition-transform duration-300 hover:scale-x-105"
+      >
+        {user ? "Logout" : "Login with Google"}
+      </button>
+
+      {showModal && <FirstLoginModal onSubmit={handleNameSubmit} />}
+    </div>
   );
 }
