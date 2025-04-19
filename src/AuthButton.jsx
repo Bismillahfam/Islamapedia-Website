@@ -11,21 +11,21 @@ function FirstLoginModal({ onSubmit }) {
   const [input, setInput] = useState("");
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-primary rounded-lg p-6 w-96 shadow-lg text-center">
-        <h2 className="text-xl font-semibold mb-4">
+    <div className="fixed inset-0 text-black bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="rounded-lg p-6 w-96 shadow-lg bg-blue-100 text-center">
+        <h2 className="text-xl font-semibold mb-4 font-serif">
           What would you like to be known as?
         </h2>
         <input
           type="text"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4"
+          className="w-full border border-blue-300 rounded-lg px-4 py-2 mb-4 font-sans"
           placeholder="Enter your name"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         <button
           onClick={() => onSubmit(input)}
-          className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary-dark"
+          className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-primary-dark font-sans"
         >
           Submit
         </button>
@@ -94,12 +94,12 @@ export default function AuthButton() {
             )}&background=random`
           }
           alt="User Profile"
-          className="w-10 h-10 rounded-full border border-gray-300 shadow"
+          className="w-10 h-10 rounded-full border border-blue-200 shadow"
         />
       )}
       <button
         onClick={user ? logout : login}
-        className="bg-primary text-black font-bold py-2 px-4 rounded-lg transition-transform duration-300 hover:scale-x-105"
+        className="text-black font-bold font-serif py-2 px-4 rounded-lg transition-transform duration-300 border-2 border-blue-200 bg-blue-100 shadow-lg hover:bg-blue-200"
       >
         {user ? "Logout" : "Login with Google"}
       </button>

@@ -1,11 +1,15 @@
-// Title Component
-function Title() {
+// Title.jsx
+export default function Title() {
   return (
-    <div className="w-[52rem] h-1/3 bg-primary text-white dark:bg-primary dark:text-black p-10 rounded-br-3xl shadow-xl text-center flex flex-col justify-center">
-      <h1 className="text-7xl font-bold">Islamapedia</h1>
-      <p className="text-2xl opacity-80 mt-4">A Vault of Islamic Knowledge</p>
+    <div className="relative w-[70%] h-64 bg-[#f4f4d9] text-black px-10 py-12 rounded-3xl shadow-2xl border-4 border-yellow-200 mx-auto mt-10 overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105">
+      <div className="relative z-10 text-center">
+        <h1 className="text-6xl font-extrabold font-serif text-blue-950">
+          Islamapedia
+        </h1>
+        <p className="text-xl opacity-80 m-4 font-sans text-blue-950">
+          A Vault of Islamic Knowledge
+        </p>
+      </div>
     </div>
   );
 }
-
-export default Title;
