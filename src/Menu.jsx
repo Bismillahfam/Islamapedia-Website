@@ -9,7 +9,7 @@ export default function Menu({ items }) {
   // Return a list of 3 buttons from the items prop
   return (
     // Add Note button adds a note to the database
-    <div className="w-[28rem] p-10 my-[10rem] ml-[10%] rounded-3xl shadow-2xl h-[24rem] flex flex-col items-center gap-8 border-4 border-blue-950">
+    <div className="w-[28rem] p-10 my-[10rem] ml-[20%] rounded-3xl shadow-2xl h-[24rem] flex flex-col items-center gap-8 border-8 border-double border-black bg-gray-100">
       <button className="group relative text-blue-950 font-bold py-2 px-4 w-full h-16 border-4 border-blue-200 font-serif text-xl rounded-full duration-200 hover:bg-blue-200 flex justify-center items-center">
         <span className="relative">
           Add a Note

@@ -7,6 +7,7 @@ import "./index.css";
 import Title from "./Title.jsx";
 import Menu from "./Menu.jsx";
 import AuthButton from "./AuthButton.jsx";
+import NotePanel from "./NotePanel.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")).render(
         <Title />
         <Menu items={["Add a Note", "Search Notes", "Donate"]} />
         <AuthButton />
+        <NotePanel />
       </div>
     </GlobalProvider>
   </StrictMode>
