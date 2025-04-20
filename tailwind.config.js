@@ -7,11 +7,17 @@ export default {
   darkMode: "media",
   theme: {
     extend: {
-      colors: {
-        primary: "#978259",
-        primaryDark: "#756547",
-        secondary: "#8C7750",
-        secondaryDark: "#6F6344",
+      animation: {
+        "bg-scroll": "bg-scroll 30s linear infinite",
+      },
+      keyframes: {
+        scrollRight: {
+          "0%": { backgroundPosition: "left center" },
+          "100%": { backgroundPosition: "right center" },
+        },
+      },
+      animation: {
+        "scroll-right": "scrollRight 30s linear infinite",
       },
     },
   },

@@ -11,7 +11,7 @@ import AuthButton from "./AuthButton.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <GlobalProvider>
-      <div className="bg-[#f4f4d9] min-h-screen">
+      <div className="bg-[#faf0e6] min-h-screen">
         <Title />
         <Menu items={["Add a Note", "Search Notes", "Donate"]} />
         <AuthButton />
