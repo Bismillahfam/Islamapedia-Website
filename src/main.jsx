@@ -5,18 +5,16 @@ import "./index.css";
 
 // Import components
 import Title from "./Title.jsx";
-import Menu from "./Menu.jsx";
 import AuthButton from "./AuthButton.jsx";
-import NotePanel from "./NotePanel.jsx";
+import DashboardLayout from "./Dasboard.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <GlobalProvider>
       <div className="bg-[#faf0e6] min-h-screen">
         <Title />
-        <Menu items={["Add a Note", "Search Notes", "Donate"]} />
+        <DashboardLayout />
         <AuthButton />
-        <NotePanel />
       </div>
     </GlobalProvider>
   </StrictMode>
