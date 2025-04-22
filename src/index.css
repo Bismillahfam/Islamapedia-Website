@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* index.css */
+body {
+  @apply m-0 p-0 bg-[#faf0e6];
+}
