@@ -1,9 +1,8 @@
-// Imports react contexts.
-import { createContext, useState, useRef } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 
-// Import firebase functions
+// Firebase imports
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
@@ -20,20 +19,34 @@ const firebaseConfig = {
 
 // Create the context
 const GlobalContext = createContext();
-
-// Export the context so other files can use it
 export { GlobalContext };
 
-// Create the provider component
+// Provider component
 export function GlobalProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState("");
+  const [notes, setNotes] = useState([]);
 
   // Firebase should only initialize once
   const app = useRef(initializeApp(firebaseConfig));
   const analytics = useRef(getAnalytics(app.current));
   const auth = useRef(getAuth(app.current));
   const db = useRef(getFirestore(app.current));
+
+  // Automatically update user on login/logout
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth.current, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser);
+        setUserName(firebaseUser.displayName || "Anonymous"); // Optional
+      } else {
+        setUser(null);
+        setUserName("");
+      }
+    });
+
+    return () => unsubscribe(); // Clean up listener on unmount
+  }, []);
 
   return (
     <GlobalContext.Provider
@@ -42,6 +55,8 @@ export function GlobalProvider({ children }) {
         setUser,
         userName,
         setUserName,
+        notes,
+        setNotes,
         auth: auth.current,
         db: db.current,
         analytics: analytics.current,
