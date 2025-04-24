@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { useState } from "react";
+import { fetchNotes } from "./NoteFunctions";
 
 // firebase imports
 import { getDoc, setDoc, doc } from "firebase/firestore";
@@ -36,7 +37,7 @@ function FirstLoginModal({ onSubmit }) {
 
 // AuthButton component
 export default function AuthButton() {
-  const { user, setUser, userName, setUserName, auth, db } =
+  const { user, setUser, userName, setUserName, auth, db, setNotes } =
     useContext(GlobalContext);
 
   const [showModal, setShowModal] = useState(false);
@@ -81,6 +82,7 @@ export default function AuthButton() {
     await signOut(auth);
     setUser(null);
     setUserName("");
+    fetchNotes(null, db, setNotes, true); // Clear notes on logout
   }
 
   return (

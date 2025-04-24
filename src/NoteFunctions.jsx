@@ -25,17 +25,20 @@ async function addNote(user, note_data, db) {
   }
 }
 
-async function fetchNotes(user, db, setNotes) {
-  if (!user || !user.uid) {
-    setNotes([]); // Clear notes on logout
+// fetches notes from the database
+async function fetchNotes(user, db, setNotes, filterByUid = false) {
+  if (filterByUid && (!user || !user.uid)) {
+    setNotes([]); // Clear notes on logout if filtering by UID
     return;
   }
 
   try {
-    const notesQuery = query(
-      collection(db, "notes"),
-      where("uid", "==", user.uid)
-    );
+    let notesQuery;
+    if (filterByUid) {
+      notesQuery = query(collection(db, "notes"), where("uid", "==", user.uid));
+    } else {
+      notesQuery = collection(db, "notes"); // No filtering
+    }
 
     const querySnapshot = await getDocs(notesQuery);
     const notesArray = querySnapshot.docs.map((doc) => ({

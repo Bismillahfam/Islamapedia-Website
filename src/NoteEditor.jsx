@@ -24,7 +24,7 @@ export default function NoteEditor({ onClose }) {
       db
     );
 
-    await fetchNotes(user, db, setNotes);
+    await fetchNotes(user, db, setNotes, true);
     setSaving(false);
     onClose(); // Close editor
   };
