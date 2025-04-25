@@ -32,7 +32,7 @@ export default function NoteEditor({ onClose }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-4 bg-white p-4 rounded-xl shadow-lg space-y-4"
+      className="my-4 mx-4 bg-white p-4 rounded-xl h-[95%] border-blue-200 border-8 shadow-lg space-y-4"
     >
       <input
         className="w-full border p-2 rounded"
@@ -42,20 +42,23 @@ export default function NoteEditor({ onClose }) {
         required
       />
       <textarea
-        className="w-full border p-2 rounded h-32"
+        className="w-full border p-2 rounded h-[35%]"
         placeholder="Write in Markdown..."
         value={body}
         onChange={(e) => setBody(e.target.value)}
         required
       />
+
+      <h3 className="text-lg font-semibold text-blue-950">Preview:</h3>
       <div className="border p-2 bg-gray-50 rounded max-h-40 overflow-y-auto">
+        <h4 className="font-semibold text-lg text-blue-950">{title}</h4>
         <ReactMarkdown>{body}</ReactMarkdown>
       </div>
       <div className="flex justify-between">
         <button
           type="button"
           onClick={onClose}
-          className="text-gray-600 hover:text-black"
+          className="rounded-lg shadow-lg bg-red-600 p-2 text-white hover:bg-red-700 duration-100"
         >
           Cancel
         </button>

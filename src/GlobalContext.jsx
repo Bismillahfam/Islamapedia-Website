@@ -26,6 +26,7 @@ export function GlobalProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState("");
   const [notes, setNotes] = useState([]);
+  const [view, setView] = useState("menu");
 
   // Firebase should only initialize once
   const app = useRef(initializeApp(firebaseConfig));
@@ -55,11 +56,13 @@ export function GlobalProvider({ children }) {
         setUser,
         userName,
         setUserName,
-        notes,
-        setNotes,
         auth: auth.current,
         db: db.current,
         analytics: analytics.current,
+        notes,
+        setNotes,
+        view,
+        setView,
       }}
     >
       {children}
