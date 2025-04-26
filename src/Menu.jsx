@@ -42,13 +42,7 @@ export default function Menu({ items }) {
       </div>
 
       {/* Modals OUTSIDE of the Menu */}
-      {showEditor && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-[#e2c9b0] p-2 rounded-2xl w-[90%] h-[90%] shadow-2xl">
-            <NoteEditor onClose={() => setShowEditor(false)} />
-          </div>
-        </div>
-      )}
+      {showEditor && <NoteEditor onClose={() => setShowEditor(false)} />}
 
       {showSearch && <NoteSearch onClose={() => setShowSearch(false)} />}
     </>
