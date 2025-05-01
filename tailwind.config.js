@@ -22,4 +22,5 @@ export default {
     },
   },
   plugins: [require("tailwind-clip-path")],
+  darkMode: "class",
 };
