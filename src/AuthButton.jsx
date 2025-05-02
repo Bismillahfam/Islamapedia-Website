@@ -96,12 +96,12 @@ export default function AuthButton() {
             )}&background=random`
           }
           alt="User Profile"
-          className="w-10 h-10 rounded-full border border-blue-200 shadow"
+          className="w-10 h-10 rounded-full border border-blue-200 dark:border-white shadow"
         />
       )}
       <button
         onClick={user ? logout : login}
-        className="text-black font-bold font-serif py-2 px-4 rounded-lg transition-transform duration-300 border-2 border-blue-200 bg-blue-100 shadow-lg hover:bg-blue-200"
+        className="text-black dark:text-white dark:border-[#1d133a] dark:hover:bg-[#1d133a] dark:bg-black font-bold font-serif py-2 px-4 rounded-lg transition-transform duration-300 border-2 border-blue-200 bg-blue-100 shadow-lg hover:bg-blue-200"
       >
         {user ? "Logout" : "Login with Google"}
       </button>
