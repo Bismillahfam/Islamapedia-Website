@@ -27,7 +27,11 @@ export function GlobalProvider({ children }) {
   const [userName, setUserName] = useState("");
   const [notes, setNotes] = useState([]);
   const [view, setView] = useState("menu");
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    // Get stored preference or default to false
+    const stored = localStorage.getItem("darkMode");
+    return stored ? JSON.parse(stored) : false;
+  });
 
   // Firebase should only initialize once
   const app = useRef(initializeApp(firebaseConfig));
@@ -46,9 +50,12 @@ export function GlobalProvider({ children }) {
         setUserName("");
       }
     });
-
     return () => unsubscribe(); // Clean up listener on unmount
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(dark));
+  }, [dark]);
 
   return (
     <GlobalContext.Provider
