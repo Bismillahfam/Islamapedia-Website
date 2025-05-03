@@ -6,3 +6,7 @@
 body {
   @apply m-0 p-0 bg-[#faf0e6] dark:bg-[#17081b];
 }
+
+* {
+  @apply duration-700;
+}

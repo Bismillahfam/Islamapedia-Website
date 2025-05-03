@@ -33,7 +33,7 @@ export default function NoteEditor({ onClose }) {
   if (user) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-[#e2c9b0] p-2 rounded-2xl w-[90%] h-[90%] shadow-2xl">
+        <div className="bg-[#e2c9b0] dark:text-white dark:bg-[#1a0a26]p-2 rounded-2xl w-[90%] h-[90%] shadow-2xl">
           <form
             onSubmit={handleSubmit}
             className="my-4 mx-4 bg-white p-4 rounded-xl h-[95%] border-blue-200 border-8 shadow-lg space-y-4"
