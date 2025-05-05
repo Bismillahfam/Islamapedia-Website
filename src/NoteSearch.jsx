@@ -19,7 +19,7 @@ export default function NoteSearch({ onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl flex gap-6 p-6 overflow-hidden">
+      <div className="w-[90%] h-[90%] bg-[#2f127e] rounded-3xl shadow-2xl flex gap-6 p-6 overflow-hidden">
         {/* Search sidebar */}
         <div className="w-1/3 max-w-sm p-6 rounded-3xl shadow-2xl border-8 border-double border-blue-200 bg-gray-100">
           <div className="flex justify-between items-center mb-4">

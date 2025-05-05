@@ -33,29 +33,33 @@ export default function NoteEditor({ onClose }) {
   if (user) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-[#e2c9b0] dark:text-white dark:bg-[#1a0a26]p-2 rounded-2xl w-[90%] h-[90%] shadow-2xl">
+        <div className="bg-[#e2c9b0] dark:text-white dark:bg-[#0e0624] p-2 rounded-2xl w-[90%] h-[90%] shadow-2xl">
           <form
             onSubmit={handleSubmit}
-            className="my-4 mx-4 bg-white p-4 rounded-xl h-[95%] border-blue-200 border-8 shadow-lg space-y-4"
+            className="my-4 mx-4 bg-white p-4 rounded-xl h-[95%] dark:bg-[#0e0624] dark:border-none border-blue-200 border-8 shadow-lg space-y-4"
           >
             <input
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded dark:bg-black"
               placeholder="Note title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
             <textarea
-              className="w-full border p-2 rounded h-[35%]"
+              className="dark:bg-black w-full border p-2 rounded h-[35%]"
               placeholder="Write in Markdown..."
               value={body}
               onChange={(e) => setBody(e.target.value)}
               required
             />
 
-            <h3 className="text-lg font-semibold text-blue-950">Preview:</h3>
-            <div className="border p-2 bg-gray-50 rounded max-h-40 overflow-y-auto">
-              <h4 className="font-semibold text-lg text-blue-950">{title}</h4>
+            <h3 className="text-lg font-semibold text-blue-950 dark:text-slate-400">
+              Preview:
+            </h3>
+            <div className="border p-2 bg-gray-50 rounded max-h-40 dark:bg-black overflow-y-auto">
+              <h4 className="font-semibold text-lg text-blue-950 dark:text-slate-400">
+                {title}
+              </h4>
               <ReactMarkdown>{body}</ReactMarkdown>
             </div>
             <div className="flex justify-between">
